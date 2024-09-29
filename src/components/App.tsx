@@ -9,6 +9,8 @@ import CondensatePipeSizing from '../components/CondensatePipeSizing';
 import HeatCalculations from '../components/HeatCalculations';
 import ValveFlowCalculations from '../components/ValveFlowCalculations';
 import OtherSteamCalculations from '../components/OtherSteamCalculations';
+import Pressure from '../subcomponents/Unit_Conversion/Pressure/Pressure';
+import Temperature from '../subcomponents/Unit_Conversion/Temperature/Temperature';
 
 const Stack = createNativeStackNavigator();
 
@@ -117,6 +119,8 @@ const App = () => {
         <Stack.Screen name="Home" options={{ headerShown: false }} component={Home} /> 
         {/**header text for home screen is set to false */}
         <Stack.Screen name="UnitConversion" component={UnitConversion} />
+        <Stack.Screen name="Pressure" component={Pressure} />
+        <Stack.Screen name="Temperature" component={Temperature} />
         <Stack.Screen name="SteamTables" component={SteamTables} />
          <Stack.Screen name="SteamPipeSizing" component={SteamPipeSizing} />
        <Stack.Screen name="CondensatePipeSizing" component={CondensatePipeSizing} />
