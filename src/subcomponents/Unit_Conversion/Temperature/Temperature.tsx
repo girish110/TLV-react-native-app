@@ -4,25 +4,25 @@ import RNPickerSelect from 'react-native-picker-select';
 
 const Temperature = () => {
   const [temperature, setTemperature] = useState('');
-  const [temperatureUnit, setTemperatureUnit] = useState('C');
+  const [temperatureUnit, setTemperatureUnit] = useState('°C');
   const [result, setResult] = useState('');
-  const [resultUnit, setResultUnit] = useState('C');
+  const [resultUnit, setResultUnit] = useState('°C');
 
   // Conversion logic for temperature
   const convertTemperature = (temperatureValue, fromUnit, toUnit) => {
     if (!isNaN(temperatureValue)) {
       let convertedValue;
-      if (fromUnit === 'C' && toUnit === 'F') {
+      if (fromUnit === '°C' && toUnit === '°F') {
         convertedValue = (temperatureValue * 9/5) + 32;
-      } else if (fromUnit === 'C' && toUnit === 'K') {
+      } else if (fromUnit === '°C' && toUnit === 'K') {
         convertedValue = temperatureValue + 273.15;
-      } else if (fromUnit === 'F' && toUnit === 'C') {
+      } else if (fromUnit === '°F' && toUnit === '°C') {
         convertedValue = (temperatureValue - 32) * 5/9;
-      } else if (fromUnit === 'F' && toUnit === 'K') {
+      } else if (fromUnit === '°F' && toUnit === 'K') {
         convertedValue = (temperatureValue - 32) * 5/9 + 273.15;
-      } else if (fromUnit === 'K' && toUnit === 'C') {
+      } else if (fromUnit === 'K' && toUnit === '°C') {
         convertedValue = temperatureValue - 273.15;
-      } else if (fromUnit === 'K' && toUnit === 'F') {
+      } else if (fromUnit === 'K' && toUnit === '°F') {
         convertedValue = (temperatureValue - 273.15) * 9/5 + 32;
       } else {
         convertedValue = temperatureValue; // Same unit, no conversion
@@ -80,8 +80,8 @@ const Temperature = () => {
           }}
           onValueChange={handleTemperatureUnitChange}
           items={[
-            { label: 'Celsius (°C)', value: 'C' },
-            { label: 'Fahrenheit (°F)', value: 'F' },
+            { label: 'Celsius (°C)', value: '°C' },
+            { label: 'Fahrenheit (°F)', value: '°F' },
             { label: 'Kelvin (K)', value: 'K' },
           ]}
           value={temperatureUnit}
@@ -112,8 +112,8 @@ const Temperature = () => {
           }}
           onValueChange={handleResultUnitChange}
           items={[
-            { label: 'Celsius (°C)', value: 'C' },
-            { label: 'Fahrenheit (°F)', value: 'F' },
+            { label: 'Celsius (°C)', value: '°C' },
+            { label: 'Fahrenheit (°F)', value: '°F' },
             { label: 'Kelvin (K)', value: 'K' },
           ]}
           value={resultUnit}
@@ -128,10 +128,12 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     backgroundColor: '#f0f0f0',
+    paddingLeft: 30,
   },
   label: {
-    fontSize: 18,
+    fontSize: 20,
     marginBottom: 10,
+    color: '#BE2BFF',
   },
   inputRow: {
     flexDirection: 'row',
@@ -141,18 +143,20 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    height: 40,
+    height: 50,
     borderColor: '#ccc',
-    borderWidth: 1,
+    borderWidth: 2,
     borderRadius: 5,
     paddingHorizontal: 10,
     backgroundColor: '#fff',
     marginRight: 10,
+    fontSize: 20,
   },
   unitLabel: {
     fontSize: 16,
     marginRight: 10,
     alignSelf: 'center',
+    color: '#BE2BFF',
   },
 });
 

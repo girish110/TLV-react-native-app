@@ -1,0 +1,156 @@
+import React, { useLayoutEffect, useState, useRef } from 'react';
+import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity, Alert } from 'react-native';
+import RNPickerSelect from 'react-native-picker-select';
+import { useNavigation } from '@react-navigation/native';
+
+const SaturatedSteamTableByTemperature = () => {
+  const [temperature, settemperature] = useState('1');
+  const [unit, setUnit] = useState('°C');
+  const pickerRef = useRef(); // Ref to trigger picker dropdown programmatically
+  const navigation = useNavigation();
+
+  
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      title: 'Saturated Steam Table By Temperature',
+    });
+  }, [navigation]);
+
+  const handleCalculate = () => {
+    // Navigate to SSTBCalc and pass the pressure and unit as route parameters
+    // navigation.navigate('SSTBTCalc', { temperature: parseFloat(temperature), unit });
+    if (unit === '°F' && (temperature <= 32 || temperature > 1472)) {
+      // Show error alert if temperature is outside the valid range
+      Alert.alert(
+        'Error',
+        'Please enter a fahrenheit between 32°F and 1472°F.',
+        [{ text: 'OK' }],
+        { cancelable: false }
+      );
+      
+    }
+    else if (unit === '°C' && (temperature <= 0 || temperature >= 801)) {
+        // Show error alert if temperature is outside the valid range
+        Alert.alert(
+          'Error',
+          'Please enter a celsius between 0°C and 800°C.',
+          [{ text: 'OK' }],
+          { cancelable: true }
+        );
+      }
+      //  return ;
+    else{
+      navigation.navigate('SSTBTCalc', { temperature: parseFloat(temperature), unit });
+    }
+    
+  };
+
+  const openPicker = () => {
+    if (pickerRef.current) {
+      pickerRef.current.togglePicker(); // Open picker programmatically
+    }
+  };
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.inputContainer}>
+        <Text style={styles.label}>Steam Temperature</Text>
+        <TextInput
+          style={styles.input}
+          value={temperature}
+          onChangeText={(text) => settemperature(text)}
+          keyboardType="numeric"
+        />
+
+        {/* <TouchableOpacity onPress={openPicker} style={styles.pickerContainer}> */}
+          <Text style={styles.unitLabel}>{unit}</Text>
+          <RNPickerSelect
+            ref={pickerRef}
+            onPress={openPicker}
+            onValueChange={(value) => setUnit(value)}
+            items={[
+              { label: '°C', value: '°C' },
+              { label: '°F', value: '°F' }, 
+              // Add other units as needed
+            ]} 
+            style={pickerSelectStyles}
+            value={unit}
+            useNativeAndroidPickerStyle={true} // Prevent default native styling on Android
+          />
+        {/* </TouchableOpacity> */}
+      </View>
+      <View style={{marginTop: 40}}>
+        <Button title="Calculate" 
+        onPress={handleCalculate}
+        color="#BE2BFF"
+        />
+      </View>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 30,
+    paddingTop: 50,
+    justifyContent: 'flex-start',
+    backgroundColor: '#F5F5F5',
+  },
+  inputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 20,
+  },
+  label: {
+    fontSize: 16,
+    color: 'black',
+  },
+  input: {
+    borderBottomWidth: 2,
+    borderBottomColor: '#999',
+    width: '30%',
+    fontSize: 16,
+    textAlign: 'center',
+    marginHorizontal: 10,
+  },
+  pickerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  unitLabel: {
+    fontSize: 16,
+    color: '#BE2BFF',
+    marginRight: 20, // Space between label and picker
+  },
+});
+
+const pickerSelectStyles = StyleSheet.create({
+  inputIOS: {
+    fontSize: 16,
+    paddingVertical: 12,
+    paddingHorizontal: 10,
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 4,
+    color: 'black',
+    width: '30%',
+    textAlign: 'center',
+    marginHorizontal: 10,
+  },
+  inputAndroid: {
+    fontSize: 16,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    borderWidth: 4,
+    borderColor: 'gray',
+    borderRadius: 4,
+    color: 'black',
+    width: '30%',
+    textAlign: 'center',
+    marginHorizontal: 10,
+  },
+});
+
+export default SaturatedSteamTableByTemperature;

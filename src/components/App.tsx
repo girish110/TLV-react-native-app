@@ -11,6 +11,13 @@ import ValveFlowCalculations from '../components/ValveFlowCalculations';
 import OtherSteamCalculations from '../components/OtherSteamCalculations';
 import Pressure from '../subcomponents/Unit_Conversion/Pressure/Pressure';
 import Temperature from '../subcomponents/Unit_Conversion/Temperature/Temperature';
+import Saturated_Steam_Table_By_Pressure from '../subcomponents/Steam_Tables/Saturated Steam Table By Pressure/Saturated_Steam_Table_By_Pressure';
+import Saturated_Steam_Table_By_Temperature from '../subcomponents/Steam_Tables/Saturated Steam Table By Temperature/Saturated_Steam_Table_By_Temperature';
+import SSTBTCalc from '../subcomponents/Steam_Tables/Saturated Steam Table By Temperature/SSTBTCalc';
+import SSTBPCalc from '../subcomponents/Steam_Tables/Saturated Steam Table By Pressure/SSTBPCalc';
+
+import Pressure_Loss_For_Steam from '../subcomponents/Steam_Pipe_Sizing/Pressure Loss For Steam/Pressure_Loss_For_Steam';
+import Pressure_Loss_Calc from '../subcomponents/Steam_Pipe_Sizing/Pressure Loss For Steam/Pressure_Loss_Calc';
 
 const Stack = createNativeStackNavigator();
 
@@ -40,31 +47,31 @@ const Home = ({ navigation }) => {
   // Handle grid item click
   const handlePress = (title) => {
     if (title === 'Unit Conversion') {
-      navigation.navigate('UnitConversion'); // Navigate to Unit Conversion screen
+      navigation.navigate('UnitConversion'); // Navigate to Unit Conversion screen. The arguement navigates to UnitConversion.tsx screen
     }
 
     if (title === 'Steam Tables') {
-      navigation.navigate('SteamTables'); // Navigate to Unit Conversion screen
+      navigation.navigate('SteamTables'); // Navigate to Steam Tables screen
     }
     
     if (title === 'Steam Pipe Sizing') {
-      navigation.navigate('SteamPipeSizing'); // Navigate to Unit Conversion screen
+      navigation.navigate('SteamPipeSizing'); // Navigate to Steam Pipe Sizing screen
     }
 
     if (title === 'Condensate Pipe Sizing') {
-      navigation.navigate('CondensatePipeSizing'); // Navigate to Unit Conversion screen
+      navigation.navigate('CondensatePipeSizing'); // Navigate to Condensate Pipe Sizing screen
     }
 
     if (title === 'Heat Calculations') {
-      navigation.navigate('HeatCalculations'); // Navigate to Unit Conversion screen
+      navigation.navigate('HeatCalculations'); // Navigate to Heat Calculations screen
     }
 
     if (title === 'Valve Flow Calculations(Steam)') {
-      navigation.navigate('ValveFlowCalculations'); // Navigate to Unit Conversion screen
+      navigation.navigate('ValveFlowCalculations'); // Navigate to Valve Flow Calculations screen
     }
 
     if (title === 'Other Steam Calculations') {
-      navigation.navigate('OtherSteamCalculations'); // Navigate to Unit Conversion screen
+      navigation.navigate('OtherSteamCalculations'); // Navigate to Other Steam Calculations screen
     }
   };
 
@@ -119,10 +126,19 @@ const App = () => {
         <Stack.Screen name="Home" options={{ headerShown: false }} component={Home} /> 
         {/**header text for home screen is set to false */}
         <Stack.Screen name="UnitConversion" component={UnitConversion} />
+         {/* Unit Converison subcomponents */}
         <Stack.Screen name="Pressure" component={Pressure} />
         <Stack.Screen name="Temperature" component={Temperature} />
         <Stack.Screen name="SteamTables" component={SteamTables} />
+        {/* Steam Tables subcomponents */}
+        <Stack.Screen name="Saturated_Steam_Table_By_Pressure" component={Saturated_Steam_Table_By_Pressure} />
+        <Stack.Screen name="SSTBPCalc" component={SSTBPCalc} />
+        <Stack.Screen name="Saturated_Steam_Table_By_Temperature" component={Saturated_Steam_Table_By_Temperature} />
+        <Stack.Screen name="SSTBTCalc" component={SSTBTCalc} />
          <Stack.Screen name="SteamPipeSizing" component={SteamPipeSizing} />
+         {/* Steam Pipe Sizing subcomponents */}
+         <Stack.Screen name="Pressure_Loss_For_Steam" component={Pressure_Loss_For_Steam} />
+         <Stack.Screen name="Pressure_Loss_Calc" component={Pressure_Loss_Calc} />
        <Stack.Screen name="CondensatePipeSizing" component={CondensatePipeSizing} />
          <Stack.Screen name="HeatCalculations" component={HeatCalculations} />
         <Stack.Screen name="ValveFlowCalculations" component={ValveFlowCalculations} />
@@ -175,7 +191,9 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
   },
- 
+ headerImage: {
+
+ }
 
 });
 

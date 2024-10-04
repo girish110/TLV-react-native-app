@@ -6,12 +6,12 @@ import { useNavigation } from '@react-navigation/native';
 const data = [
   { id: '1', title: 'Pressure', screen: 'Pressure' },
   { id: '2', title: 'Temperature', screen: 'Temperature' },
-  { id: '3', title: 'Length', screen: 'Length' },
-  { id: '4', title: 'Area', screen: 'Area' },
-  { id: '5', title: 'Volume', screen: 'Volume' },
-  { id: '6', title: 'Mass', screen: 'Mass' },
-  { id: '7', title: 'Energy', screen: 'Energy' },
-  { id: '8', title: 'Power', screen: 'Power' },
+  // { id: '3', title: 'Length', screen: 'Length' },
+  // { id: '4', title: 'Area', screen: 'Area' },
+  // { id: '5', title: 'Volume', screen: 'Volume' },
+  // { id: '6', title: 'Mass', screen: 'Mass' },
+  // { id: '7', title: 'Energy', screen: 'Energy' },
+  // { id: '8', title: 'Power', screen: 'Power' },
 ];
 
 // Unit Conversion Component
