@@ -18,6 +18,20 @@ import SSTBPCalc from '../subcomponents/Steam_Tables/Saturated Steam Table By Pr
 
 import Pressure_Loss_For_Steam from '../subcomponents/Steam_Pipe_Sizing/Pressure Loss For Steam/Pressure_Loss_For_Steam';
 import Pressure_Loss_Calc from '../subcomponents/Steam_Pipe_Sizing/Pressure Loss For Steam/Pressure_Loss_Calc';
+import Continuous from '../subcomponents/Heat_Calculations/Heating Liquid (Continuous)/Continuous';
+import Continuous_Calc from '../subcomponents/Heat_Calculations/Heating Liquid (Continuous)/Continuous_Calc';
+import Batch from '../subcomponents/Heat_Calculations/Heating Liquid (Batch)/Batch';
+import Batch_Calc from '../subcomponents/Heat_Calculations/Heating Liquid (Batch)/Batch_Calc';
+import Velocity_For_Steam from '../subcomponents/Steam_Pipe_Sizing/Velocity For Steam/Velocity_For_Steam';
+import Velocity_Calc from '../subcomponents/Steam_Pipe_Sizing/Velocity For Steam/Velocity_Calc';
+import Equipment_and_Trap from '../subcomponents/Condensate_Pipe_Sizing/Equipment and Trap/Equipment_and_Trap';
+import Calc from '../subcomponents/Condensate_Pipe_Sizing/Equipment and Trap/Calc';
+import Recovery_Line_By_Pressure_Loss from '../subcomponents/Condensate_Pipe_Sizing/Recovery Line By Pressure Loss/Recovery_Line_By_Pressure_Loss';
+import Calci from '../subcomponents/Condensate_Pipe_Sizing/Recovery Line By Pressure Loss/Calci';
+import Cv_Kvs_Values from '../subcomponents/Valve_Flow_Calculations(Steam)/Valve and Orifice Cv & Kvs Values for Steam/Cv_Kvs_Values';
+import Cv_Kvs_Calc from '../subcomponents/Valve_Flow_Calculations(Steam)/Valve and Orifice Cv & Kvs Values for Steam/Cv_Kvs_Calc';
+import Steam_Flow_Rate_Valve from '../subcomponents/Valve_Flow_Calculations(Steam)/Steam Flow Rate through a Valve/Steam_Flow_Rate_Valve';
+import Valve_Calc from '../subcomponents/Valve_Flow_Calculations(Steam)/Steam Flow Rate through a Valve/Valve_Calc';
 
 const Stack = createNativeStackNavigator();
 
@@ -139,9 +153,26 @@ const App = () => {
          {/* Steam Pipe Sizing subcomponents */}
          <Stack.Screen name="Pressure_Loss_For_Steam" component={Pressure_Loss_For_Steam} />
          <Stack.Screen name="Pressure_Loss_Calc" component={Pressure_Loss_Calc} />
+         <Stack.Screen name="Velocity_For_Steam" component={Velocity_For_Steam} />
+         <Stack.Screen name="Velocity_Calc" component={Velocity_Calc} />
        <Stack.Screen name="CondensatePipeSizing" component={CondensatePipeSizing} />
+       {/* Condensate Pipe Sizing subcomponents */}
+       <Stack.Screen name="Equipment_and_Trap" component={Equipment_and_Trap} />
+       <Stack.Screen name="Calc" component={Calc} />
+       <Stack.Screen name="Recovery_Line_By_Pressure_Loss" component={Recovery_Line_By_Pressure_Loss} />
+       <Stack.Screen name="Calci" component={Calci} />
          <Stack.Screen name="HeatCalculations" component={HeatCalculations} />
+         {/* Heat Calculations subcomponents */}
+         <Stack.Screen name="Continuous" component={Continuous} />
+         <Stack.Screen name="Continuous_Calc" component={Continuous_Calc} />
+         <Stack.Screen name="Batch" component={Batch} />
+         <Stack.Screen name="Batch_Calc" component={Batch_Calc} />
         <Stack.Screen name="ValveFlowCalculations" component={ValveFlowCalculations} />
+        {/* Valve Flow Calculations subcomponents */}
+        <Stack.Screen name="Cv_Kvs_Values" component={Cv_Kvs_Values} />
+        <Stack.Screen name="Cv_Kvs_Calc" component={Cv_Kvs_Calc} />
+        <Stack.Screen name="Steam_Flow_Rate_Valve" component={Steam_Flow_Rate_Valve} />
+        <Stack.Screen name="Valve_Calc" component={Valve_Calc} />
         <Stack.Screen name="OtherSteamCalculations" component={OtherSteamCalculations} />
       </Stack.Navigator>
     </NavigationContainer>
@@ -159,20 +190,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   gridContainer: {
-    padding: 10,
-    marginTop: 10,
-    
+    padding: 0,
+    marginTop: 30,
   },
   gridItem: {
     flex: 1,
     margin: 20,
+    // padding: 5,
     alignItems: 'center',
     // justifyContent: 'center',
   },
   icon: {
     width: 80,
     height: 80,
-    marginBottom: 10,
+    marginBottom: 0,
+    marginTop: -15,
   },
   label: {
     fontSize: 16,
