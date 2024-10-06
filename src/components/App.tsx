@@ -32,6 +32,10 @@ import Cv_Kvs_Values from '../subcomponents/Valve_Flow_Calculations(Steam)/Valve
 import Cv_Kvs_Calc from '../subcomponents/Valve_Flow_Calculations(Steam)/Valve and Orifice Cv & Kvs Values for Steam/Cv_Kvs_Calc';
 import Steam_Flow_Rate_Valve from '../subcomponents/Valve_Flow_Calculations(Steam)/Steam Flow Rate through a Valve/Steam_Flow_Rate_Valve';
 import Valve_Calc from '../subcomponents/Valve_Flow_Calculations(Steam)/Steam Flow Rate through a Valve/Valve_Calc';
+import Pressure_Reduction from '../subcomponents/Other_Steam_Calculations/Improved Steam Dryness From Pressure Reduction/Pressure_Reduction';
+import Pressure_Reduction_Calc from '../subcomponents/Other_Steam_Calculations/Improved Steam Dryness From Pressure Reduction/Pressure_Reduction_Calc';
+import Drop_Based from '../subcomponents/Other_Steam_Calculations/Temperature Drop Based on Air % of Total Volume/Drop_Based';
+import Drop_Based_Calc from '../subcomponents/Other_Steam_Calculations/Temperature Drop Based on Air % of Total Volume/Drop_Based_Calc';
 
 const Stack = createNativeStackNavigator();
 
@@ -102,11 +106,12 @@ const Home = ({ navigation }) => {
     <SafeAreaView style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
-        <Image
+        {/* <Image
           style={styles.headerImage}
           source={require('../assets/smarttracker.png')} // Update the path based on your file location
           resizeMode="contain"
-        />
+        /> */}
+        <Text style={styles.headerText}>SMART TOOLKIT</Text>
       </View>
 
       {/* Grid Layout */}
@@ -174,6 +179,11 @@ const App = () => {
         <Stack.Screen name="Steam_Flow_Rate_Valve" component={Steam_Flow_Rate_Valve} />
         <Stack.Screen name="Valve_Calc" component={Valve_Calc} />
         <Stack.Screen name="OtherSteamCalculations" component={OtherSteamCalculations} />
+        {/* Other Steam Calculations subcomponents */}
+        <Stack.Screen name="Pressure_Reduction" component={Pressure_Reduction} />
+        <Stack.Screen name="Pressure_Reduction_Calc" component={Pressure_Reduction_Calc} />
+        <Stack.Screen name="Drop_Based" component={Drop_Based} />
+        <Stack.Screen name="Drop_Based_Calc" component={Drop_Based_Calc} />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -185,9 +195,21 @@ const styles = StyleSheet.create({
     backgroundColor: '#f0f0f0',
   },
   header: {
-    backgroundColor: '#FFBFC0', // TLV branding color
-    padding: 15,
+    backgroundColor: '#8465FF', // TLV branding color
+    padding: 5,
     alignItems: 'center',
+  },
+  headerText: {
+    padding: 10,
+    alignItems: 'center',
+    fontSize: 20,
+    color: '#FFBFC0',
+    fontWeight: 'bold', // Makes the text bold
+  fontFamily: 'serif', // You can use custom fonts if added in the app
+  letterSpacing: 2, // Adds spacing between letters for a stylish look
+  textShadowColor: 'black', // Black shadow color
+  textShadowOffset: { width: 9, height: 2 }, // Adds a subtle shadow effect
+  textShadowRadius: 20, // Adjusts the blurriness of the shadow
   },
   gridContainer: {
     padding: 0,

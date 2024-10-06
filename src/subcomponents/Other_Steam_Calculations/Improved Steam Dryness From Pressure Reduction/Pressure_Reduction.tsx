@@ -3,7 +3,7 @@ import { View, Text, TextInput, Button, ScrollView, StyleSheet, TouchableOpacity
 import { Picker } from '@react-native-picker/picker';
 import { useNavigation } from '@react-navigation/native';
 
-const EquipmentandTrap = () => {
+const PressureReduction = () => {
   const [pipeGrade, setPipeGrade] = useState('DIN 2448');
   const [steamPressure, setSteamPressure] = useState('0');
   const [steamFlowRate, setSteamFlowRate] = useState('0');
@@ -14,7 +14,7 @@ const EquipmentandTrap = () => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: 'Condensate Recovery Pipe Sizing Between Equipment and Trap',
+      title: 'Improved Steam Dryness From Pressure Reduction',
       headerTitleStyle: {
         fontSize: 16, // Set the desired font size here
       },
@@ -24,27 +24,14 @@ const EquipmentandTrap = () => {
   const handleCalculate = () => {
     // Navigate to SSTBCalc and pass the pressure and unit as route parameters
     // console.log('Navigate to PressureLossCalc with params:', steamPressure, unit);
-    navigation.navigate('Calc', { pressure: steamPressure, unit });
+    navigation.navigate('Pressure_Reduction_Calc', { pressure: steamPressure, unit });
   };
   return (
     <ScrollView style={styles.container}>
-      <View style={styles.inputContainer}>
-        <Text style={styles.label}>Pipe Grade</Text>
-        <Picker
-          selectedValue={pipeGrade}
-          onValueChange={(itemValue) => setPipeGrade(itemValue)}
-          style={styles.picker}
-        >
-          <Picker.Item label="DIN 2448" value="DIN 2448" />
-          {/* <Picker.Item label="Other Grade" value="Other" /> */}
-        </Picker>
-      </View>
-
       
-
       <View  style={styles.rowContainer}>
       <View style={styles.inputContainer}>
-        <Text style={styles.label}>Condensate Load*</Text>
+        <Text style={styles.label}>Primary Pressure</Text>
         <View style={styles.row}>
         <TextInput
           style={styles.inputHalf}
@@ -58,8 +45,8 @@ const EquipmentandTrap = () => {
           onValueChange={(itemValue) => setPipeGrade(itemValue)}
           style={styles.inputPicker}
         >
-          <Picker.Item label="kg/h" value="kg/h" />
-          <Picker.Item label="lb/h" value="lb/h" />
+          <Picker.Item label="MPaG" value="MPaG" />
+          <Picker.Item label="kPaG" value="kPaG" />
         </Picker>
       </View>
       </View>
@@ -67,7 +54,7 @@ const EquipmentandTrap = () => {
 
       <View  style={styles.rowContainer}>
       <View style={styles.inputContainer}>
-        <Text style={styles.label}>Maximum Allowable Velocity*</Text>
+        <Text style={styles.label}>Secondary Pressure</Text>
         <View style={styles.row}>
         <TextInput
           style={styles.inputHalf}
@@ -81,8 +68,30 @@ const EquipmentandTrap = () => {
           onValueChange={(itemValue) => setPipeGrade(itemValue)}
           style={styles.inputPicker}
         >
-          <Picker.Item label="m/s" value="m/s" />
-          <Picker.Item label="km/h" value="km/h" />
+          <Picker.Item label="kPaG" value="kPaG" />
+          <Picker.Item label="MPaG" value="MPaG" />
+        </Picker>
+      </View>
+      </View>
+      </View>
+
+      <View  style={styles.rowContainer}>
+      <View style={styles.inputContainer}>
+        <Text style={styles.label}>Estimated Primary Steam Dryness</Text>
+        <View style={styles.row}>
+        <TextInput
+          style={styles.inputHalf}
+          value={maxPressureLoss}
+          onChangeText={setMaxPressureLoss}
+          placeholder="Enter Pressure Loss"
+          keyboardType="numeric"
+        />
+        <Picker
+          selectedValue={pipeGrade}
+          onValueChange={(itemValue) => setPipeGrade(itemValue)}
+          style={styles.inputPicker}
+        >
+          <Picker.Item label="%" value="%" />
         </Picker>
       </View>
       </View>
@@ -185,4 +194,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default EquipmentandTrap;
+export default PressureReduction;

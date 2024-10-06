@@ -3,7 +3,7 @@ import { View, Text, TextInput, Button, ScrollView, StyleSheet, TouchableOpacity
 import { Picker } from '@react-native-picker/picker';
 import { useNavigation } from '@react-navigation/native';
 
-const EquipmentandTrap = () => {
+const DropBased = () => {
   const [pipeGrade, setPipeGrade] = useState('DIN 2448');
   const [steamPressure, setSteamPressure] = useState('0');
   const [steamFlowRate, setSteamFlowRate] = useState('0');
@@ -14,7 +14,7 @@ const EquipmentandTrap = () => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: 'Condensate Recovery Pipe Sizing Between Equipment and Trap',
+      title: 'Temperature Drop Based on Air % of Total Volume',
       headerTitleStyle: {
         fontSize: 16, // Set the desired font size here
       },
@@ -24,27 +24,14 @@ const EquipmentandTrap = () => {
   const handleCalculate = () => {
     // Navigate to SSTBCalc and pass the pressure and unit as route parameters
     // console.log('Navigate to PressureLossCalc with params:', steamPressure, unit);
-    navigation.navigate('Calc', { pressure: steamPressure, unit });
+    navigation.navigate('Drop_Based_Calc', { pressure: steamPressure, unit });
   };
   return (
     <ScrollView style={styles.container}>
-      <View style={styles.inputContainer}>
-        <Text style={styles.label}>Pipe Grade</Text>
-        <Picker
-          selectedValue={pipeGrade}
-          onValueChange={(itemValue) => setPipeGrade(itemValue)}
-          style={styles.picker}
-        >
-          <Picker.Item label="DIN 2448" value="DIN 2448" />
-          {/* <Picker.Item label="Other Grade" value="Other" /> */}
-        </Picker>
-      </View>
-
       
-
       <View  style={styles.rowContainer}>
       <View style={styles.inputContainer}>
-        <Text style={styles.label}>Condensate Load*</Text>
+        <Text style={styles.label}>Steam Pressure</Text>
         <View style={styles.row}>
         <TextInput
           style={styles.inputHalf}
@@ -58,8 +45,8 @@ const EquipmentandTrap = () => {
           onValueChange={(itemValue) => setPipeGrade(itemValue)}
           style={styles.inputPicker}
         >
-          <Picker.Item label="kg/h" value="kg/h" />
-          <Picker.Item label="lb/h" value="lb/h" />
+          <Picker.Item label="MPaG" value="MPaG" />
+          <Picker.Item label="kPaG" value="kPaG" />
         </Picker>
       </View>
       </View>
@@ -67,7 +54,7 @@ const EquipmentandTrap = () => {
 
       <View  style={styles.rowContainer}>
       <View style={styles.inputContainer}>
-        <Text style={styles.label}>Maximum Allowable Velocity*</Text>
+        <Text style={styles.label}>Air % of Total Volume</Text>
         <View style={styles.row}>
         <TextInput
           style={styles.inputHalf}
@@ -81,12 +68,13 @@ const EquipmentandTrap = () => {
           onValueChange={(itemValue) => setPipeGrade(itemValue)}
           style={styles.inputPicker}
         >
-          <Picker.Item label="m/s" value="m/s" />
-          <Picker.Item label="km/h" value="km/h" />
+          <Picker.Item label="%" value="%" />
         </Picker>
       </View>
       </View>
       </View>
+
+      
 
       <Pressable style={styles.button} onPress={handleCalculate}>
         <Text style={styles.buttonText}>Calculate</Text>
@@ -185,4 +173,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default EquipmentandTrap;
+export default DropBased;

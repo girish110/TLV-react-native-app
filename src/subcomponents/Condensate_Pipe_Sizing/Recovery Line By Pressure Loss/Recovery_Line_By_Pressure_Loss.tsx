@@ -88,7 +88,7 @@ const RecoveryLineByPressureLoss = () => {
 
       <View  style={styles.rowContainer}>
       <View style={styles.inputContainer}>
-        <Text style={styles.labelMax}>Recovery Line Pressure</Text>
+        <Text style={styles.label}>Recovery Line Pressure</Text>
         <View style={styles.row}>
         <TextInput
           style={styles.inputHalf}
@@ -111,7 +111,7 @@ const RecoveryLineByPressureLoss = () => {
 
       <View  style={styles.rowContainer}>
       <View style={styles.inputContainer}>
-        <Text style={styles.labelMax}>Maximum Allowable Prssure Loss</Text>
+        <Text style={styles.label}>Maximum Allowable Pressure Loss</Text>
         <View style={styles.row}>
         <TextInput
           style={styles.inputHalf}
