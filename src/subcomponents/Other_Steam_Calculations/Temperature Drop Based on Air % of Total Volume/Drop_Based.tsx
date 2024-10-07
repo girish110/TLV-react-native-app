@@ -6,10 +6,11 @@ import { useNavigation } from '@react-navigation/native';
 const DropBased = () => {
   const [pipeGrade, setPipeGrade] = useState('DIN 2448');
   const [steamPressure, setSteamPressure] = useState('0');
+  const [airVolume, setAirVolume] = useState('0');
   const [steamFlowRate, setSteamFlowRate] = useState('0');
   const [maxPressureLoss, setMaxPressureLoss] = useState('0');
-  const [pipeLength, setPipeLength] = useState('0');
   const [unit, setUnit] = useState('unit');
+  const [isValid, setIsValid] = useState(true);
   const navigation = useNavigation();
 
   useLayoutEffect(() => {
@@ -26,6 +27,31 @@ const DropBased = () => {
     // console.log('Navigate to PressureLossCalc with params:', steamPressure, unit);
     navigation.navigate('Drop_Based_Calc', { pressure: steamPressure, unit });
   };
+
+  const validateInput = (text) => {
+    const validInputPattern = /^\d*\.?\d{0,}$/;
+    return validInputPattern.test(text);
+  };
+
+  const handleSteamPressureChange = (text) => {
+    if (validateInput(text)) {
+      setSteamPressure(text);
+      setIsValid(true);
+    } else {
+      setIsValid(false);
+    }
+  };
+
+  const handleAirVolumeChange = (text) => {
+    if (validateInput(text)) {
+      setAirVolume(text);
+      setIsValid(true);
+    } else {
+      setIsValid(false);
+    }
+  };
+
+
   return (
     <ScrollView style={styles.container}>
       
@@ -35,8 +61,8 @@ const DropBased = () => {
         <View style={styles.row}>
         <TextInput
           style={styles.inputHalf}
-          value={steamFlowRate}
-          onChangeText={setSteamFlowRate}
+          value={steamPressure}
+          onChangeText={handleSteamPressureChange}
           placeholder="Enter Flow Rate"
           keyboardType="numeric"
         />
@@ -58,8 +84,8 @@ const DropBased = () => {
         <View style={styles.row}>
         <TextInput
           style={styles.inputHalf}
-          value={maxPressureLoss}
-          onChangeText={setMaxPressureLoss}
+          value={airVolume}
+          onChangeText={handleAirVolumeChange}
           placeholder="Enter Pressure Loss"
           keyboardType="numeric"
         />

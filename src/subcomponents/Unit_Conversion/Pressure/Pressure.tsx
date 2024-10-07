@@ -28,10 +28,22 @@ const Pressure = () => {
   };
 
   // Handle pressure input changes
+  // const handlePressureChange = (value) => {
+  //   setPressure(value);
+  //   const pressureValue = parseFloat(value);
+  //   convertPressure(pressureValue, pressureUnit, resultUnit);
+  // };
+
   const handlePressureChange = (value) => {
-    setPressure(value);
-    const pressureValue = parseFloat(value);
-    convertPressure(pressureValue, pressureUnit, resultUnit);
+    // Regular expression to allow only numbers with a single decimal point
+    const validInputPattern = /^(\d+(\.\d{0,})?)?$/;
+
+    // Test if the input matches the valid pattern
+    if (validInputPattern.test(value)) {
+      setPressure(value);
+      const pressureValue = parseFloat(value);
+      convertPressure(pressureValue, pressureUnit, resultUnit);
+    } 
   };
 
   // Handle changes in pressure unit

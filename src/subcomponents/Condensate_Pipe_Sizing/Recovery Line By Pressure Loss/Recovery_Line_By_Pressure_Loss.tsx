@@ -6,10 +6,13 @@ import { useNavigation } from '@react-navigation/native';
 const RecoveryLineByPressureLoss = () => {
   const [pipeGrade, setPipeGrade] = useState('DIN 2448');
   const [steamPressure, setSteamPressure] = useState('0');
-  const [steamFlowRate, setSteamFlowRate] = useState('0');
+  const [condensatePressure, setCondensatePressure] = useState('0');
+  const [condensateLoad, setCondensateLoad] = useState('0');
+  const [recoveryPressure, setRecoveryPressure] = useState('0');
   const [maxPressureLoss, setMaxPressureLoss] = useState('0');
   const [pipeLength, setPipeLength] = useState('0');
   const [unit, setUnit] = useState('unit');
+  const [isValid, setIsValid] = useState(true);
   const navigation = useNavigation();
 
   useLayoutEffect(() => {
@@ -26,6 +29,58 @@ const RecoveryLineByPressureLoss = () => {
     // console.log('Navigate to PressureLossCalc with params:', steamPressure, unit);
     navigation.navigate('Calci', { pressure: steamPressure, unit });
   };
+
+  const validateInput = (text) => {
+    const validInputPattern = /^\d*\.?\d{0,}$/;
+    return validInputPattern.test(text);
+  };
+
+  const handleCondensatePressureChange = (text) => {
+    if (validateInput(text)) {
+      setCondensatePressure(text);
+      setIsValid(true);
+    } else {
+      setIsValid(false);
+    }
+  };
+
+  const handleCondensateLoadChange = (text) => {
+    if (validateInput(text)) {
+      setCondensateLoad(text);
+      setIsValid(true);
+    } else {
+      setIsValid(false);
+    }
+  };
+
+  const handleRecoveryPressureChange = (text) => {
+    if (validateInput(text)) {
+      setRecoveryPressure(text);
+      setIsValid(true);
+    } else {
+      setIsValid(false);
+    }
+  };
+
+  const handleMaxPressureLossChange = (text) => {
+    if (validateInput(text)) {
+      setMaxPressureLoss(text);
+      setIsValid(true);
+    } else {
+      setIsValid(false);
+    }
+  };
+
+  const handlePipeLengthChange = (text) => {
+    if (validateInput(text)) {
+      setPipeLength(text);
+      setIsValid(true);
+    } else {
+      setIsValid(false);
+    }
+  };
+
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.inputContainer}>
@@ -46,8 +101,8 @@ const RecoveryLineByPressureLoss = () => {
         <View style={styles.row}>
         <TextInput
           style={styles.inputHalf}
-          value={steamPressure}
-          onChangeText={setSteamPressure}
+          value={condensatePressure}
+          onChangeText={handleCondensatePressureChange}
           placeholder="Enter Pressure"
           keyboardType="numeric"
         />
@@ -69,8 +124,8 @@ const RecoveryLineByPressureLoss = () => {
         <View style={styles.row}>
         <TextInput
           style={styles.inputHalf}
-          value={steamFlowRate}
-          onChangeText={setSteamFlowRate}
+          value={condensateLoad}
+          onChangeText={handleCondensateLoadChange}
           placeholder="Enter Flow Rate"
           keyboardType="numeric"
         />
@@ -92,8 +147,8 @@ const RecoveryLineByPressureLoss = () => {
         <View style={styles.row}>
         <TextInput
           style={styles.inputHalf}
-          value={maxPressureLoss}
-          onChangeText={setMaxPressureLoss}
+          value={recoveryPressure}
+          onChangeText={handleRecoveryPressureChange}
           placeholder="Enter Pressure Loss"
           keyboardType="numeric"
         />
@@ -116,7 +171,7 @@ const RecoveryLineByPressureLoss = () => {
         <TextInput
           style={styles.inputHalf}
           value={maxPressureLoss}
-          onChangeText={setMaxPressureLoss}
+          onChangeText={handleMaxPressureLossChange}
           placeholder="Enter Pressure Loss"
           keyboardType="numeric"
         />
@@ -139,7 +194,7 @@ const RecoveryLineByPressureLoss = () => {
         <TextInput
           style={styles.inputHalf}
           value={pipeLength}
-          onChangeText={setPipeLength}
+          onChangeText={handlePipeLengthChange}
           placeholder="Enter Length"
           keyboardType="numeric"
         />

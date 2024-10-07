@@ -35,9 +35,14 @@ const Temperature = () => {
 
   // Handle temperature input changes
   const handleTemperatureChange = (value) => {
+
+    const validInputPattern = /^(\d+(\.\d{0,})?)?$/;
+
+    if (validInputPattern.test(value)) {
     setTemperature(value);
     const temperatureValue = parseFloat(value);
     convertTemperature(temperatureValue, temperatureUnit, resultUnit);
+    }
   };
 
   // Handle changes in temperature unit

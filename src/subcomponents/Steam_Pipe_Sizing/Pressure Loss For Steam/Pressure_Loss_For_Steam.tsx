@@ -5,11 +5,12 @@ import { useNavigation } from '@react-navigation/native';
 
 const PressureLossForSteam = () => {
   const [pipeGrade, setPipeGrade] = useState('DIN 2448');
-  const [steamPressure, setSteamPressure] = useState('0.101325');
+  const [steamPressure, setSteamPressure] = useState('0');
   const [steamFlowRate, setSteamFlowRate] = useState('0');
   const [maxPressureLoss, setMaxPressureLoss] = useState('0');
   const [pipeLength, setPipeLength] = useState('0');
   const [unit, setUnit] = useState('unit');
+  const [isValid, setIsValid] = useState(true); // State to track input validity
   const navigation = useNavigation();
 
   useLayoutEffect(() => {
@@ -23,9 +24,52 @@ const PressureLossForSteam = () => {
   
   const handleCalculate = () => {
     // Navigate to SSTBCalc and pass the pressure and unit as route parameters
-    console.log('Navigate to PressureLossCalc with params:', steamPressure, unit);
+    //console.log('Navigate to PressureLossCalc with params:', steamPressure, unit);
     navigation.navigate('Pressure_Loss_Calc', { pressure: steamPressure, unit });
   };
+  const validateInput = (text) => {
+    const validInputPattern = /^\d*\.?\d{0,}$/;
+    return validInputPattern.test(text);
+  };
+
+  // The following 4 functions are written to validate inputs for individual input fields 
+  const handleSteamPressureChange = (text) => {
+    if (validateInput(text)) {
+      setSteamPressure(text);
+      setIsValid(true);
+    } else {
+      setIsValid(false);
+    }
+  };
+
+  const handleSteamFlowRateChange = (text) => {
+    if (validateInput(text)) {
+      setSteamFlowRate(text);
+      setIsValid(true);
+    } else {
+      setIsValid(false);
+    }
+  };
+
+  const handleMaxPressureLossChange = (text) => {
+    if (validateInput(text)) {
+      setMaxPressureLoss(text);
+      setIsValid(true);
+    } else {
+      setIsValid(false);
+    }
+  };
+
+  const handlePipeLengthChange = (text) => {
+    if (validateInput(text)) {
+      setPipeLength(text);
+      setIsValid(true);
+    } else {
+      setIsValid(false);
+    }
+  };
+
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.inputContainer}>
@@ -47,7 +91,7 @@ const PressureLossForSteam = () => {
         <TextInput
           style={styles.inputHalf}
           value={steamPressure}
-          onChangeText={setSteamPressure}
+          onChangeText={handleSteamPressureChange}
           placeholder="Enter Pressure"
           keyboardType="numeric"
         />
@@ -70,7 +114,7 @@ const PressureLossForSteam = () => {
         <TextInput
           style={styles.inputHalf}
           value={steamFlowRate}
-          onChangeText={setSteamFlowRate}
+          onChangeText={handleSteamFlowRateChange}
           placeholder="Enter Flow Rate"
           keyboardType="numeric"
         />
@@ -92,7 +136,7 @@ const PressureLossForSteam = () => {
         <TextInput
           style={styles.inputHalf}
           value={maxPressureLoss}
-          onChangeText={setMaxPressureLoss}
+          onChangeText={handleMaxPressureLossChange}
           placeholder="Enter Pressure Loss"
           keyboardType="numeric"
         />
@@ -115,7 +159,7 @@ const PressureLossForSteam = () => {
         <TextInput
           style={styles.inputHalf}
           value={pipeLength}
-          onChangeText={setPipeLength}
+          onChangeText={handlePipeLengthChange}
           placeholder="Enter Length"
           keyboardType="numeric"
         />

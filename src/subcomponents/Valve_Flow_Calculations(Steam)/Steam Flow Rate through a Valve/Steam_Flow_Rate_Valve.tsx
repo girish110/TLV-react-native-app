@@ -5,11 +5,15 @@ import { useNavigation } from '@react-navigation/native';
 
 const SteamFLowRateValve = () => {
   const [pipeGrade, setPipeGrade] = useState('DIN 2448');
+  const [primaryPressure, setPrimaryPressure] = useState('0');
+  const [secondaryPressure, setSecondaryPressure] = useState('0');
+  const [valveCvValue, setValveCvValue] = useState('0');
   const [steamPressure, setSteamPressure] = useState('0');
   const [steamFlowRate, setSteamFlowRate] = useState('0');
   const [maxPressureLoss, setMaxPressureLoss] = useState('0');
   const [pipeLength, setPipeLength] = useState('0');
   const [unit, setUnit] = useState('unit');
+  const [isValid, setIsValid] = useState(true);
   const navigation = useNavigation();
 
   useLayoutEffect(() => {
@@ -26,6 +30,39 @@ const SteamFLowRateValve = () => {
     // console.log('Navigate to PressureLossCalc with params:', steamPressure, unit);
     navigation.navigate('Valve_Calc', { pressure: steamPressure, unit });
   };
+
+  const validateInput = (text) => {
+    const validInputPattern = /^\d*\.?\d{0,}$/;
+    return validInputPattern.test(text);
+  };
+
+  const handlePrimaryPressureChange = (text) => {
+    if (validateInput(text)) {
+      setPrimaryPressure(text);
+      setIsValid(true);
+    } else {
+      setIsValid(false);
+    }
+  };
+
+  const handleSecondaryPressureChange = (text) => {
+    if (validateInput(text)) {
+      setSecondaryPressure(text);
+      setIsValid(true);
+    } else {
+      setIsValid(false);
+    }
+  };
+
+  const handleValveCvValueChange = (text) => {
+    if (validateInput(text)) {
+      setValveCvValue(text);
+      setIsValid(true);
+    } else {
+      setIsValid(false);
+    }
+  };
+
   return (
     <ScrollView style={styles.container}>
       
@@ -35,8 +72,8 @@ const SteamFLowRateValve = () => {
         <View style={styles.row}>
         <TextInput
           style={styles.inputHalf}
-          value={steamFlowRate}
-          onChangeText={setSteamFlowRate}
+          value={primaryPressure}
+          onChangeText={handlePrimaryPressureChange}
           placeholder="Enter Flow Rate"
           keyboardType="numeric"
         />
@@ -58,8 +95,8 @@ const SteamFLowRateValve = () => {
         <View style={styles.row}>
         <TextInput
           style={styles.inputHalf}
-          value={maxPressureLoss}
-          onChangeText={setMaxPressureLoss}
+          value={secondaryPressure}
+          onChangeText={handleSecondaryPressureChange}
           placeholder="Enter Pressure Loss"
           keyboardType="numeric"
         />
@@ -81,8 +118,8 @@ const SteamFLowRateValve = () => {
         <View style={styles.row}>
         <TextInput
           style={styles.inputHalf}
-          value={maxPressureLoss}
-          onChangeText={setMaxPressureLoss}
+          value={valveCvValue}
+          onChangeText={handleValveCvValueChange}
           placeholder="Enter Pressure Loss"
           keyboardType="numeric"
         />

@@ -6,10 +6,13 @@ import { useNavigation } from '@react-navigation/native';
 const Batch = () => {
   
   const [liquidType, setliquidType] = useState('0');
-  const [steamFlowRate, setSteamFlowRate] = useState('0');
-  const [maxPressureLoss, setMaxPressureLoss] = useState('0');
-  const [pipeLength, setPipeLength] = useState('0');
+  const [liquidInletTemp,setLiquidInletTemp ] = useState('0');
+  const [liquidOutletTemp,setLiquidOutletTemp] = useState('0');
+  const [liquidVolume,setLiquidVolume] = useState('0');
+  const [steamPressure,setSteamPressure] = useState('0');
+  const [heatingTime, setHeatingTime] = useState('0');
   const [unit, setUnit] = useState('kg/h');
+  const [isValid, setIsValid] = useState(true);
   const navigation = useNavigation();
 
   useLayoutEffect(() => {
@@ -26,6 +29,56 @@ const Batch = () => {
     console.log('Navigate to PressureLossCalc with params:', liquidType, unit);
     navigation.navigate('Batch_Calc', { pressure: liquidType, unit });
   };
+  const validateInput = (text) => {
+    const validInputPattern = /^\d*\.?\d{0,}$/;
+    return validInputPattern.test(text);
+  };
+
+  const handleLiquidInletTempChange = (text) => {
+    if (validateInput(text)) {
+      setLiquidInletTemp(text);
+      setIsValid(true);
+    } else {
+      setIsValid(false);
+    }
+  };
+
+  const handleLiquidOutletTempChange = (text) => {
+    if (validateInput(text)) {
+      setLiquidOutletTemp(text);
+      setIsValid(true);
+    } else {
+      setIsValid(false);
+    }
+  };
+
+  const handleLiquidVolumeChange = (text) => {
+    if (validateInput(text)) {
+      setLiquidVolume(text);
+      setIsValid(true);
+    } else {
+      setIsValid(false);
+    }
+  };
+
+  const handleSteamPressureChange = (text) => {
+    if (validateInput(text)) {
+      setSteamPressure(text);
+      setIsValid(true);
+    } else {
+      setIsValid(false);
+    }
+  };
+
+  const handleHeatingTimeChange = (text) => {
+    if (validateInput(text)) {
+      setHeatingTime(text);
+      setIsValid(true);
+    } else {
+      setIsValid(false);
+    }
+  };
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.inputContainer}>
@@ -49,8 +102,8 @@ const Batch = () => {
         <View style={styles.row}>
         <TextInput
           style={styles.inputHalf}
-          value={steamFlowRate}
-          onChangeText={setSteamFlowRate}
+          value={liquidInletTemp}
+          onChangeText={handleLiquidInletTempChange}
           placeholder="Enter Flow Rate"
           keyboardType="numeric"
         />
@@ -73,8 +126,8 @@ const Batch = () => {
         <View style={styles.row}>
         <TextInput
           style={styles.inputHalf}
-          value={maxPressureLoss}
-          onChangeText={setMaxPressureLoss}
+          value={liquidOutletTemp}
+          onChangeText={handleLiquidOutletTempChange}
           placeholder="Enter Pressure Loss"
           keyboardType="numeric"
         />
@@ -97,8 +150,8 @@ const Batch = () => {
         <View style={styles.row}>
         <TextInput
           style={styles.inputHalf}
-          value={pipeLength}
-          onChangeText={setPipeLength}
+          value={liquidVolume}
+          onChangeText={handleLiquidVolumeChange}
           placeholder="Enter Length"
           keyboardType="numeric"
         />
@@ -120,8 +173,8 @@ const Batch = () => {
         <View style={styles.row}>
         <TextInput
           style={styles.inputHalf}
-          value={pipeLength}
-          onChangeText={setPipeLength}
+          value={steamPressure}
+          onChangeText={handleSteamPressureChange}
           placeholder="Enter Length"
           keyboardType="numeric"
         />
@@ -143,8 +196,8 @@ const Batch = () => {
         <View style={styles.row}>
         <TextInput
           style={styles.inputHalf}
-          value={pipeLength}
-          onChangeText={setPipeLength}
+          value={heatingTime}
+          onChangeText={handleHeatingTimeChange}
           placeholder="Enter Length"
           keyboardType="numeric"
         />

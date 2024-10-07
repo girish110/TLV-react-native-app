@@ -50,7 +50,7 @@ const SSTBTCalc = () => {
   };
   
 
-  const calculateLatentHeat = () => {
+  const calculateLatentHeat = (temperature) => {
     switch (unit) {
       case '°C':
         // Latent heat formula for °C
@@ -61,7 +61,7 @@ const SSTBTCalc = () => {
         // Now calculate the latent heat using the converted Celsius value
         return 2500 - (2.5 * celsius); // Adjust for temperature input in °F
       default:
-        return 'Unit not supported';
+        return temperature;
     }
   };
   
@@ -107,7 +107,7 @@ const SSTBTCalc = () => {
          Steam Pressure: {calculateSteamTemperature(temperature).toFixed(6)} MPa abs
       </Text>
       <Text style={styles.result}>
-        Latent Heat of Steam: {calculateLatentHeat().toFixed(2)} kJ/kg
+        Latent Heat of Steam: {calculateLatentHeat(temperature).toFixed(2)} kJ/kg
       </Text>
       <Text style={styles.result}>
         Specific Enthalpy of Saturated Steam: {calculateEnthalpy(temperature).toFixed(2)} kJ/kg

@@ -6,10 +6,10 @@ import { useNavigation } from '@react-navigation/native';
 const EquipmentandTrap = () => {
   const [pipeGrade, setPipeGrade] = useState('DIN 2448');
   const [steamPressure, setSteamPressure] = useState('0');
-  const [steamFlowRate, setSteamFlowRate] = useState('0');
-  const [maxPressureLoss, setMaxPressureLoss] = useState('0');
-  const [pipeLength, setPipeLength] = useState('0');
+  const [CondensateLoad, setCondensateLoad] = useState('0');
+  const [maxVelocity, setmaxVelocity] = useState('0');
   const [unit, setUnit] = useState('unit');
+  const [isValid, setIsValid] = useState(true); // State to track input validity
   const navigation = useNavigation();
 
   useLayoutEffect(() => {
@@ -26,6 +26,31 @@ const EquipmentandTrap = () => {
     // console.log('Navigate to PressureLossCalc with params:', steamPressure, unit);
     navigation.navigate('Calc', { pressure: steamPressure, unit });
   };
+
+  const validateInput = (text) => {
+    const validInputPattern = /^\d*\.?\d{0,}$/;
+    return validInputPattern.test(text);
+  };
+
+  
+  const handleCondensateLoadChange = (text) => {
+    if (validateInput(text)) {
+      setCondensateLoad(text);
+      setIsValid(true);
+    } else {
+      setIsValid(false);
+    }
+  };
+
+  const handleMaxVelocityChange = (text) => {
+    if (validateInput(text)) {
+      setmaxVelocity(text);
+      setIsValid(true);
+    } else {
+      setIsValid(false);
+    }
+  };
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.inputContainer}>
@@ -48,8 +73,8 @@ const EquipmentandTrap = () => {
         <View style={styles.row}>
         <TextInput
           style={styles.inputHalf}
-          value={steamFlowRate}
-          onChangeText={setSteamFlowRate}
+          value={CondensateLoad}
+          onChangeText={handleCondensateLoadChange}
           placeholder="Enter Flow Rate"
           keyboardType="numeric"
         />
@@ -71,8 +96,8 @@ const EquipmentandTrap = () => {
         <View style={styles.row}>
         <TextInput
           style={styles.inputHalf}
-          value={maxPressureLoss}
-          onChangeText={setMaxPressureLoss}
+          value={maxVelocity}
+          onChangeText={handleMaxVelocityChange}
           placeholder="Enter Pressure Loss"
           keyboardType="numeric"
         />

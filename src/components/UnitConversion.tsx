@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -18,6 +18,12 @@ const data = [
 const UnitConversion = () => {
   const navigation = useNavigation(); // Access the navigation object
 
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      title: 'Unit Conversion',
+    });
+  }, [navigation]);
+  
   // Render each list item
   const renderItem = ({ item }) => (
     <TouchableOpacity onPress={() => navigation.navigate(item.screen)}>

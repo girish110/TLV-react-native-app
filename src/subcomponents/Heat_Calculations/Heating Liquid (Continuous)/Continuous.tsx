@@ -6,10 +6,12 @@ import { useNavigation } from '@react-navigation/native';
 const Continuous = () => {
   
   const [liquidType, setliquidType] = useState('0');
-  const [steamFlowRate, setSteamFlowRate] = useState('0');
-  const [maxPressureLoss, setMaxPressureLoss] = useState('0');
-  const [pipeLength, setPipeLength] = useState('0');
+  const [liquidFlowRate,setLiquidFlowRate ] = useState('0');
+  const [liquidInletTemp,setLiquidInletTemp ] = useState('0');
+  const [liquidOutletTemp,setLiquidOutletTemp] = useState('0');
+  const [steamPressure,setSteamPressure] = useState('0');
   const [unit, setUnit] = useState('kg/h');
+  const [isValid, setIsValid] = useState(true);
   const navigation = useNavigation();
 
   useLayoutEffect(() => {
@@ -23,9 +25,53 @@ const Continuous = () => {
   
   const handleCalculate = () => {
     // Navigate to SSTBCalc and pass the pressure and unit as route parameters
-    console.log('Navigate to PressureLossCalc with params:', liquidType, unit);
+    //console.log('Navigate to PressureLossCalc with params:', liquidType, unit);
     navigation.navigate('Continuous_Calc', { pressure: liquidType, unit });
   };
+
+  const validateInput = (text) => {
+    const validInputPattern = /^\d*\.?\d{0,}$/;
+    return validInputPattern.test(text);
+  };
+
+ 
+
+  const handleLiquidFlowRateChange = (text) => {
+    if (validateInput(text)) {
+      setLiquidFlowRate(text);
+      setIsValid(true);
+    } else {
+      setIsValid(false);
+    }
+  };
+
+  const handleLiquidInletTempChange = (text) => {
+    if (validateInput(text)) {
+      setLiquidInletTemp(text);
+      setIsValid(true);
+    } else {
+      setIsValid(false);
+    }
+  };
+
+  const handleLiquidOutletTempChange = (text) => {
+    if (validateInput(text)) {
+      setLiquidOutletTemp(text);
+      setIsValid(true);
+    } else {
+      setIsValid(false);
+    }
+  };
+
+  const handleSteamPressureChange = (text) => {
+    if (validateInput(text)) {
+      setSteamPressure(text);
+      setIsValid(true);
+    } else {
+      setIsValid(false);
+    }
+  };
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.inputContainer}>
@@ -47,8 +93,8 @@ const Continuous = () => {
         <View style={styles.row}>
         <TextInput
           style={styles.inputHalf}
-          value={liquidType}
-          onChangeText={setliquidType}
+          value={liquidFlowRate}
+          onChangeText={handleLiquidFlowRateChange}
           // placeholder="Enter Pressure"
           keyboardType="numeric"
         />
@@ -70,8 +116,8 @@ const Continuous = () => {
         <View style={styles.row}>
         <TextInput
           style={styles.inputHalf}
-          value={steamFlowRate}
-          onChangeText={setSteamFlowRate}
+          value={liquidInletTemp}
+          onChangeText={handleLiquidInletTempChange}
           placeholder="Enter Flow Rate"
           keyboardType="numeric"
         />
@@ -94,8 +140,8 @@ const Continuous = () => {
         <View style={styles.row}>
         <TextInput
           style={styles.inputHalf}
-          value={maxPressureLoss}
-          onChangeText={setMaxPressureLoss}
+          value={liquidOutletTemp}
+          onChangeText={handleLiquidOutletTempChange}
           placeholder="Enter Pressure Loss"
           keyboardType="numeric"
         />
@@ -118,8 +164,8 @@ const Continuous = () => {
         <View style={styles.row}>
         <TextInput
           style={styles.inputHalf}
-          value={pipeLength}
-          onChangeText={setPipeLength}
+          value={steamPressure}
+          onChangeText={handleSteamPressureChange}
           placeholder="Enter Length"
           keyboardType="numeric"
         />

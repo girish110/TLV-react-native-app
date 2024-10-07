@@ -55,7 +55,7 @@ const PressureLossCalc = () => {
     <View style={styles.container}>
       <Text style={styles.result}>Pipe Size: {pipeSize}</Text>
       <Text style={styles.result}>
-      Pipe Inner Diameter : °C
+      Pipe Inner Diameter : {unit}
       </Text>
       <Text style={styles.result}>
         Steam Velocity:  m/s
