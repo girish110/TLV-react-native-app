@@ -118,7 +118,7 @@ const Continuous = () => {
           style={styles.inputHalf}
           value={liquidInletTemp}
           onChangeText={handleLiquidInletTempChange}
-          placeholder="Enter Flow Rate"
+          //placeholder="Enter Flow Rate"
           keyboardType="numeric"
         />
         <Picker
@@ -142,7 +142,7 @@ const Continuous = () => {
           style={styles.inputHalf}
           value={liquidOutletTemp}
           onChangeText={handleLiquidOutletTempChange}
-          placeholder="Enter Pressure Loss"
+          //placeholder="Enter Pressure Loss"
           keyboardType="numeric"
         />
         <Picker
@@ -166,7 +166,7 @@ const Continuous = () => {
           style={styles.inputHalf}
           value={steamPressure}
           onChangeText={handleSteamPressureChange}
-          placeholder="Enter Length"
+          //placeholder="Enter Length"
           keyboardType="numeric"
         />
         <Picker

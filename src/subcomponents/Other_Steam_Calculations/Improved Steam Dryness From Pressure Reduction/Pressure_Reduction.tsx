@@ -72,7 +72,7 @@ const PressureReduction = () => {
           style={styles.inputHalf}
           value={primaryPressure}
           onChangeText={handlePrimaryPressureChange}
-          placeholder="Enter Flow Rate"
+          //placeholder="Enter Flow Rate"
           keyboardType="numeric"
         />
         <Picker
@@ -95,7 +95,7 @@ const PressureReduction = () => {
           style={styles.inputHalf}
           value={secondaryPressure}
           onChangeText={handleSecondaryPressureChange}
-          placeholder="Enter Pressure Loss"
+          //placeholder="Enter Pressure Loss"
           keyboardType="numeric"
         />
         <Picker
@@ -118,7 +118,7 @@ const PressureReduction = () => {
           style={styles.inputHalf}
           value={estDryness}
           onChangeText={handleEstDrynessChange}
-          placeholder="Enter Pressure Loss"
+          //placeholder="Enter Pressure Loss"
           keyboardType="numeric"
         />
         <Picker

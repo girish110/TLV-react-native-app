@@ -92,7 +92,7 @@ const VelocityForSteam = () => {
           style={styles.inputHalf}
           value={steamPressure}
           onChangeText={handleSteamPressureChange}
-          placeholder="Enter Pressure"
+          //placeholder="Enter Pressure"
           keyboardType="numeric"
         />
         <Picker
@@ -115,7 +115,7 @@ const VelocityForSteam = () => {
           style={styles.inputHalf}
           value={steamFlowRate}
           onChangeText={handleSteamFlowRateChange}
-          placeholder="Enter Flow Rate"
+          //placeholder="Enter Flow Rate"
           keyboardType="numeric"
         />
         <Picker
@@ -137,7 +137,7 @@ const VelocityForSteam = () => {
           style={styles.inputHalf}
           value={maxVeloctiy}
           onChangeText={handleMaxVelocityChange}
-          placeholder="Enter Pressure Loss"
+          //placeholder="Enter Pressure Loss"
           keyboardType="numeric"
         />
         <Picker
@@ -160,7 +160,7 @@ const VelocityForSteam = () => {
           style={styles.inputHalf}
           value={pipeLength}
           onChangeText={handlePipeLengthChange}
-          placeholder="Enter Length"
+          //placeholder="Enter Length"
           keyboardType="numeric"
         />
         <Picker

@@ -103,7 +103,7 @@ const RecoveryLineByPressureLoss = () => {
           style={styles.inputHalf}
           value={condensatePressure}
           onChangeText={handleCondensatePressureChange}
-          placeholder="Enter Pressure"
+          //placeholder="Enter Pressure"
           keyboardType="numeric"
         />
         <Picker
@@ -126,7 +126,7 @@ const RecoveryLineByPressureLoss = () => {
           style={styles.inputHalf}
           value={condensateLoad}
           onChangeText={handleCondensateLoadChange}
-          placeholder="Enter Flow Rate"
+          //placeholder="Enter Flow Rate"
           keyboardType="numeric"
         />
         <Picker
@@ -149,7 +149,7 @@ const RecoveryLineByPressureLoss = () => {
           style={styles.inputHalf}
           value={recoveryPressure}
           onChangeText={handleRecoveryPressureChange}
-          placeholder="Enter Pressure Loss"
+          //placeholder="Enter Pressure Loss"
           keyboardType="numeric"
         />
         <Picker
@@ -172,7 +172,7 @@ const RecoveryLineByPressureLoss = () => {
           style={styles.inputHalf}
           value={maxPressureLoss}
           onChangeText={handleMaxPressureLossChange}
-          placeholder="Enter Pressure Loss"
+          //placeholder="Enter Pressure Loss"
           keyboardType="numeric"
         />
         <Picker
@@ -195,7 +195,7 @@ const RecoveryLineByPressureLoss = () => {
           style={styles.inputHalf}
           value={pipeLength}
           onChangeText={handlePipeLengthChange}
-          placeholder="Enter Length"
+          //placeholder="Enter Length"
           keyboardType="numeric"
         />
         <Picker

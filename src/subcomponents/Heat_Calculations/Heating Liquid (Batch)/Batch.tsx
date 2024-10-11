@@ -104,7 +104,7 @@ const Batch = () => {
           style={styles.inputHalf}
           value={liquidInletTemp}
           onChangeText={handleLiquidInletTempChange}
-          placeholder="Enter Flow Rate"
+          //placeholder="Enter Flow Rate"
           keyboardType="numeric"
         />
         <Picker
@@ -128,7 +128,7 @@ const Batch = () => {
           style={styles.inputHalf}
           value={liquidOutletTemp}
           onChangeText={handleLiquidOutletTempChange}
-          placeholder="Enter Pressure Loss"
+          //placeholder="Enter Pressure Loss"
           keyboardType="numeric"
         />
         <Picker
@@ -152,7 +152,7 @@ const Batch = () => {
           style={styles.inputHalf}
           value={liquidVolume}
           onChangeText={handleLiquidVolumeChange}
-          placeholder="Enter Length"
+          //placeholder="Enter Length"
           keyboardType="numeric"
         />
         <Picker
@@ -175,7 +175,7 @@ const Batch = () => {
           style={styles.inputHalf}
           value={steamPressure}
           onChangeText={handleSteamPressureChange}
-          placeholder="Enter Length"
+          //placeholder="Enter Length"
           keyboardType="numeric"
         />
         <Picker
@@ -198,7 +198,7 @@ const Batch = () => {
           style={styles.inputHalf}
           value={heatingTime}
           onChangeText={handleHeatingTimeChange}
-          placeholder="Enter Length"
+          //placeholder="Enter Length"
           keyboardType="numeric"
         />
         <Picker

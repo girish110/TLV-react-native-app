@@ -2,6 +2,7 @@ import React, { useLayoutEffect, useState, useRef } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import { useNavigation } from '@react-navigation/native';
+import { Picker } from '@react-native-picker/picker';
 
 const SaturatedSteamTableByTemperature = () => {
   const [isValid, setIsValid] = useState(true);
@@ -68,7 +69,7 @@ const SaturatedSteamTableByTemperature = () => {
     
   };
 
-  const handleTempratureChange = (text) => {
+  const handleTemperatureChange = (text) => {
     // Regular expression to validate the input:
     // - Only allows numbers, up to one decimal point, and one optional leading negative sign
     const validInputPattern = /^-?\d*\.?\d{0,}$/;
@@ -82,24 +83,36 @@ const SaturatedSteamTableByTemperature = () => {
     }
   };
 
-  const openPicker = () => {
-    if (pickerRef.current) {
-      pickerRef.current.togglePicker(); // Open picker programmatically
-    }
-  };
+
 
   return (
     <View style={styles.container}>
       <View style={styles.inputContainer}>
         <Text style={[styles.label,!isValid && styles.labelInvalid]}>Steam Temperature</Text>
+        <View style={styles.row}>
         <TextInput
+          style={styles.inputHalf}
+          value={temperature}
+          onChangeText={handleTemperatureChange}
+          keyboardType="numeric"
+        />
+        <Picker
+          selectedValue={unit}
+           onValueChange={(itemValue) => setUnit(itemValue)}
+          style={styles.inputPicker}
+        >
+          <Picker.Item label="°C" value="°C" />
+          <Picker.Item label="°F" value="°F" />
+          <Picker.Item label="K" value="K" />
+        </Picker>
+        </View>
+        {/* <TextInput
           style={styles.input}
           value={temperature}
           onChangeText={handleTempratureChange}
           keyboardType="numeric"
         />
 
-        {/* <TouchableOpacity onPress={openPicker} style={styles.pickerContainer}> */}
           <Text style={styles.unitLabel}>{unit}</Text>
           <RNPickerSelect
             ref={pickerRef}
@@ -114,14 +127,16 @@ const SaturatedSteamTableByTemperature = () => {
             style={pickerSelectStyles}
             value={unit}
             useNativeAndroidPickerStyle={true} // Prevent default native styling on Android
-          />
-        {/* </TouchableOpacity> */}
+          /> */}
+          
       </View>
       <View style={{marginTop: 40}}>
-        <Button title="Calculate" 
-        onPress={handleCalculate}
-        color="#BE2BFF"
-        />
+      <TouchableOpacity 
+    onPress={handleCalculate} 
+    style={styles.calculateButton}
+    >
+    <Text style={styles.buttonText}>Calculate</Text>
+    </TouchableOpacity>
       </View>
     </View>
   );
@@ -136,10 +151,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5F5F5',
   },
   inputContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginBottom: 20,
+    marginVertical: -2,
   },
   label: {
     fontSize: 16,
@@ -164,6 +176,43 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#BE2BFF',
     marginRight: 20, // Space between label and picker
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginRight: 20,
+  },
+  inputHalf: {
+    flex: 0.6, // Adjust the size of the TextInput relative to the Picker
+    height: 40,
+    borderColor: '#ccc',
+    borderWidth: 2,
+    paddingHorizontal: 10,
+    borderRadius: 5,
+    marginRight: 10, // Adds space between TextInput and Picker
+  },
+  inputPicker: {
+    flex: 0.5, // Adjust size of the Picker relative to the TextInput
+    height: 50,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    borderRadius: 5,
+    backgroundColor: 'lightgrey',
+    marginRight: -20,
+  },
+  calculateButton: {
+    backgroundColor: '#BE2BFF', // Button color
+    paddingVertical: 8,
+    borderRadius: 50, // Increased border radius
+    alignItems: 'center', // Center the text inside the button
+    marginVertical: 10,
+    justifyContent: 'center',
+  },
+  buttonText: {
+    color: '#fff', // Text color
+    fontSize: 16,
+    // fontWeight: 'bold',
   },
 });
 

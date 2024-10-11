@@ -75,7 +75,7 @@ const EquipmentandTrap = () => {
           style={styles.inputHalf}
           value={CondensateLoad}
           onChangeText={handleCondensateLoadChange}
-          placeholder="Enter Flow Rate"
+          //placeholder="Enter Flow Rate"
           keyboardType="numeric"
         />
         <Picker
@@ -98,7 +98,7 @@ const EquipmentandTrap = () => {
           style={styles.inputHalf}
           value={maxVelocity}
           onChangeText={handleMaxVelocityChange}
-          placeholder="Enter Pressure Loss"
+          //placeholder="Enter Pressure Loss"
           keyboardType="numeric"
         />
         <Picker

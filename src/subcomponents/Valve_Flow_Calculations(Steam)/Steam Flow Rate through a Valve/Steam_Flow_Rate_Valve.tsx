@@ -74,7 +74,7 @@ const SteamFLowRateValve = () => {
           style={styles.inputHalf}
           value={primaryPressure}
           onChangeText={handlePrimaryPressureChange}
-          placeholder="Enter Flow Rate"
+          //placeholder="Enter Flow Rate"
           keyboardType="numeric"
         />
         <Picker
@@ -97,7 +97,7 @@ const SteamFLowRateValve = () => {
           style={styles.inputHalf}
           value={secondaryPressure}
           onChangeText={handleSecondaryPressureChange}
-          placeholder="Enter Pressure Loss"
+          //placeholder="Enter Pressure Loss"
           keyboardType="numeric"
         />
         <Picker
@@ -120,7 +120,7 @@ const SteamFLowRateValve = () => {
           style={styles.inputHalf}
           value={valveCvValue}
           onChangeText={handleValveCvValueChange}
-          placeholder="Enter Pressure Loss"
+          //placeholder="Enter Pressure Loss"
           keyboardType="numeric"
         />
         <Picker

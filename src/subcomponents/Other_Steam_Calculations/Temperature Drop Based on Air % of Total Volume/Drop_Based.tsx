@@ -63,7 +63,7 @@ const DropBased = () => {
           style={styles.inputHalf}
           value={steamPressure}
           onChangeText={handleSteamPressureChange}
-          placeholder="Enter Flow Rate"
+          //placeholder="Enter Flow Rate"
           keyboardType="numeric"
         />
         <Picker
@@ -86,7 +86,7 @@ const DropBased = () => {
           style={styles.inputHalf}
           value={airVolume}
           onChangeText={handleAirVolumeChange}
-          placeholder="Enter Pressure Loss"
+          //placeholder="Enter Pressure Loss"
           keyboardType="numeric"
         />
         <Picker

@@ -96,7 +96,7 @@ const Pressure = () => {
       <Text style={styles.label}>Result</Text>
       <View style={styles.inputRow}>
         <TextInput
-          style={styles.input}
+          style={styles.resultInput}
           keyboardType="numeric"
           value={result}
           editable={false}
@@ -123,10 +123,11 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: '#f0f0f0',
     paddingLeft: 30,
+    paddingTop: 30,
   },
   label: {
-    fontSize: 20,
-    marginBottom: 10,
+    fontSize: 16,
+    marginBottom: 0,
     color: '#BE2BFF',
   },
   inputRow: {
@@ -145,13 +146,25 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     backgroundColor: '#fff',
     marginRight: 10,
-    fontSize: 20,
+    fontSize: 16,
   },
   unitLabel: {
-    fontSize: 20,
+    fontSize: 16,
     marginRight: 10,
     alignSelf: 'center',
-    color: '#BE2BFF',
+    color: 'black',
+  },
+  resultInput: {
+    flex: 1,
+    height: 50,
+    borderColor: '#ccc',
+    borderWidth: 2,
+    borderRadius: 5,
+    paddingHorizontal: 10,
+    backgroundColor: '#fff',
+    marginRight: 10,
+    fontSize: 16,
+    color: '#9083FF',
   },
 });
 

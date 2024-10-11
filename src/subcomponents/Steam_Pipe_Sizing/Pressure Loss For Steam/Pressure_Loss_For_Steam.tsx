@@ -92,7 +92,7 @@ const PressureLossForSteam = () => {
           style={styles.inputHalf}
           value={steamPressure}
           onChangeText={handleSteamPressureChange}
-          placeholder="Enter Pressure"
+          //placeholder="Enter Pressure"
           keyboardType="numeric"
         />
         <Picker
@@ -115,7 +115,7 @@ const PressureLossForSteam = () => {
           style={styles.inputHalf}
           value={steamFlowRate}
           onChangeText={handleSteamFlowRateChange}
-          placeholder="Enter Flow Rate"
+          //placeholder="Enter Flow Rate"
           keyboardType="numeric"
         />
         <Picker
@@ -131,13 +131,13 @@ const PressureLossForSteam = () => {
 
       <View  style={styles.rowContainer}>
       <View style={styles.inputContainer}>
-        <Text style={styles.labelMax}>Maximum Allowable Pressure Loss</Text>
+        <Text style={styles.label}>Maximum Allowable Pressure Loss</Text>
         <View style={styles.row}>
         <TextInput
           style={styles.inputHalf}
           value={maxPressureLoss}
           onChangeText={handleMaxPressureLossChange}
-          placeholder="Enter Pressure Loss"
+          //placeholder="Enter Pressure Loss"
           keyboardType="numeric"
         />
         <Picker
@@ -160,7 +160,7 @@ const PressureLossForSteam = () => {
           style={styles.inputHalf}
           value={pipeLength}
           onChangeText={handlePipeLengthChange}
-          placeholder="Enter Length"
+          //placeholder="Enter Length"
           keyboardType="numeric"
         />
         <Picker

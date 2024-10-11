@@ -2,6 +2,7 @@ import React, { useLayoutEffect, useState, useRef } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import { useNavigation } from '@react-navigation/native';
+import { Picker } from '@react-native-picker/picker';
 
 
 const SaturatedSteamTableByPressure = () => {
@@ -21,6 +22,7 @@ const SaturatedSteamTableByPressure = () => {
   }, [navigation]);
 
   const handleCalculate = () => {
+    const pressureValue = parseFloat(pressure);
     // Navigate to SSTBCalc and pass the pressure and unit as route parameters
     let valid=true;
     if (unit === 'MPa abs' && (pressure <= 0.0 || pressure > 22.06)) {
@@ -30,7 +32,7 @@ const SaturatedSteamTableByPressure = () => {
         'Error',
         'Please enter Mpa abs value between 0.0 and 22.06',
         [{ text: 'OK' }],
-        { cancelable: false }
+        { cancelable: true }
       );
       
     }
@@ -48,8 +50,19 @@ const SaturatedSteamTableByPressure = () => {
         setIsValid(false); // Set input as invalid if validation fails
         return; // Exit function if the input is invalid
       }
+
+      if (isNaN(pressureValue)) {
+        Alert.alert(
+            'Error',
+            'Invalid pressure value. Please enter a valid number.',
+            [{ text: 'OK' }],
+            { cancelable: true }
+        );
+        return;
+    }
+    
       setIsValid(true); // If everything is valid, set the input as valid
-      navigation.navigate('SSTBPCalc', { pressure: parseFloat(pressure), unit });
+      navigation.navigate('SSTBPCalc', { pressure: pressureValue, unit });
     
     //   else{
     // navigation.navigate('SSTBPCalc', { pressure: parseFloat(pressure), unit });
@@ -70,24 +83,34 @@ const SaturatedSteamTableByPressure = () => {
     }
   };
 
-  const openPicker = () => {
-    if (pickerRef.current) {
-      pickerRef.current.togglePicker(); // Open picker programmatically
-    }
-  };
 
   return (
     <View style={styles.container}>
       <View style={styles.inputContainer}>
         <Text style={[styles.label,!isValid && styles.labelInvalid ]}>Steam Pressure</Text>
+        <View style={styles.row}>
         <TextInput
+          style={styles.inputHalf}
+          value={pressure}
+          onChangeText={handlePressureChange}
+          keyboardType="numeric"
+        />
+        <Picker
+          selectedValue={unit}
+           onValueChange={(itemValue) => setUnit(itemValue)}
+          style={styles.inputPicker}
+        >
+          <Picker.Item label="MPa abs" value="MPa abs" />
+          <Picker.Item label="psi abs" value="psi abs" />
+        </Picker>
+      </View>
+        {/* <TextInput
           style={styles.input}
           value={pressure}
           onChangeText={handlePressureChange}
           keyboardType="numeric"
         />
 
-        {/* <TouchableOpacity onPress={openPicker} style={styles.pickerContainer}> */}
           <Text style={styles.unitLabel}>{unit}</Text>
           <RNPickerSelect
             // ref={pickerRef}
@@ -102,14 +125,15 @@ const SaturatedSteamTableByPressure = () => {
             Value={unit}
             useNativeAndroidPickerStyle={true} // Prevent default native styling on Android
             
-          />
-        {/* </TouchableOpacity> */}
+          /> */}
       </View>
       <View style={{marginTop: 40}}>
-        <Button title="Calculate" 
-        onPress={handleCalculate}
-        color="#BE2BFF"
-        />
+      <TouchableOpacity 
+    onPress={handleCalculate} 
+    style={styles.calculateButton}
+    >
+    <Text style={styles.buttonText}>Calculate</Text>
+    </TouchableOpacity>
       </View>
     </View>
   );
@@ -124,10 +148,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5F5F5',
   },
   inputContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginBottom: 20,
+    marginVertical: -2,
   },
   label: {
     fontSize: 16,
@@ -155,6 +176,44 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#BE2BFF',
     marginRight: 15, // Space between label and picker
+  },
+  calculateButton: {
+    backgroundColor: '#BE2BFF', // Button color
+    paddingVertical: 8,
+    borderRadius: 50, // Increased border radius
+    alignItems: 'center', // Center the text inside the button
+    marginVertical: 10,
+    justifyContent: 'center',
+  },
+  buttonText: {
+    color: '#fff', // Text color
+    fontSize: 16,
+    // fontWeight: 'bold',
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginRight: 20,
+  },
+  inputHalf: {
+    flex: 0.6, // Adjust the size of the TextInput relative to the Picker
+    height: 40,
+    borderColor: '#ccc',
+    borderWidth: 2,
+    paddingHorizontal: 10,
+    borderRadius: 5,
+    marginRight: 10, // Adds space between TextInput and Picker
+  },
+  inputPicker: {
+    flex: 0.5, // Adjust size of the Picker relative to the TextInput
+    height: 50,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    borderRadius: 5,
+    backgroundColor: 'lightgrey',
+    marginRight: -20,
+    
   },
 });
 
