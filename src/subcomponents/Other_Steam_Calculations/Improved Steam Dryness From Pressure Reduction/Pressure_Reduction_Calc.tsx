@@ -13,7 +13,7 @@ const PressureReductionCalc = () => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: 'Pressure Reduction Result',
+      title: 'Result',
     });
   }, [navigation]);
 

@@ -13,7 +13,7 @@ const ContinuousCalc = () => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: 'Continuous Calculation Result',
+      title: 'Result',
     });
   }, [navigation]);
 

@@ -19,7 +19,7 @@ const PressureLossCalc = () => {
     if (initialUnit) setUnit(initialUnit);
 
     navigation.setOptions({
-      title: 'Velocity Result',
+      title: 'Result',
     });
   }, [navigation]);
 

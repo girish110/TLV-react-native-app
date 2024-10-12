@@ -13,7 +13,7 @@ const ValveCalc = () => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: 'Steam Flow Rate Valve Result',
+      title: 'Result',
     });
   }, [navigation]);
 

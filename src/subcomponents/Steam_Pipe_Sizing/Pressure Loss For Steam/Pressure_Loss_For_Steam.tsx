@@ -15,12 +15,27 @@ const PressureLossForSteam = () => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: 'Pipe Sizing By Pressure Loss For Steam',
+      headerBackVisible: false, // Hide the back button
+      headerTitleAlign: 'center', // Align the title to the center
       headerTitleStyle: {
-        fontSize: 16, // Set the desired font size here
+        fontSize: 16,
+        textAlign: 'center',
       },
+      headerStyle: {
+        backgroundColor: '#8465FF', // Set the header background color
+      },
+      headerTitle: () => (
+        <Text
+          style={{ fontSize: 17, textAlign: 'center',color: 'white', fontWeight: 'bold' }}
+          numberOfLines={2} // Allow text wrapping for long titles
+          // adjustsFontSizeToFit // Automatically adjust font size to fit
+        >
+          Pipe Sizing by Pressure Loss for Steam
+        </Text>
+      ),
     });
   }, [navigation]);
+  
   
   const handleCalculate = () => {
     // Navigate to SSTBCalc and pass the pressure and unit as route parameters

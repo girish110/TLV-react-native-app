@@ -17,10 +17,24 @@ const RecoveryLineByPressureLoss = () => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: 'Condensate Recovery Pipe Sizing for Condensate Recovery Line by Pressure Loss',
+      headerBackVisible: false, // Hide the back button
+      headerTitleAlign: 'center', // Align the title to the center
       headerTitleStyle: {
-        fontSize: 16, // Set the desired font size here
+        fontSize: 16,
+        textAlign: 'center',
       },
+      headerStyle: {
+        backgroundColor: '#8465FF', // Set the header background color
+      },
+      headerTitle: () => (
+        <Text
+          style={{ fontSize: 16, textAlign: 'center',color: 'white', fontWeight: 'bold' }}
+          numberOfLines={3} // Allow text wrapping for long titles
+          //  adjustsFontSizeToFit // Automatically adjust font size to fit
+        >
+          Condensate Recovery Pipe Sizing for Condensate Recovery Line by Pressure Loss
+        </Text>
+      ),
     });
   }, [navigation]);
   

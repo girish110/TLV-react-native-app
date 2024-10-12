@@ -18,7 +18,7 @@ const PressureLossCalc = () => {
     if (initialPressure) setPressure(initialPressure.toString()); // Convert to string for TextInput
     if (initialUnit) setUnit(initialUnit);
     navigation.setOptions({
-      title: 'Pressure Loss Result',
+      title: 'Result',
     });
   }, [navigation]);
 

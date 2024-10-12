@@ -15,10 +15,24 @@ const DropBased = () => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: 'Temperature Drop Based on Air % of Total Volume',
+      headerBackVisible: false, // Hide the back button
+      headerTitleAlign: 'center', // Align the title to the center
       headerTitleStyle: {
-        fontSize: 16, // Set the desired font size here
+        fontSize: 16,
+        textAlign: 'center',
       },
+      headerStyle: {
+        backgroundColor: '#8465FF', // Set the header background color
+      },
+      headerTitle: () => (
+        <Text
+          style={{ fontSize: 16, textAlign: 'center',color: 'white', fontWeight: 'bold' }}
+          numberOfLines={2} // Allow text wrapping for long titles
+          // adjustsFontSizeToFit // Automatically adjust font size to fit
+        >
+          Temperature Drop Based on Air % of Total Volume
+        </Text>
+      ),
     });
   }, [navigation]);
   

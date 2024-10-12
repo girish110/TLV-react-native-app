@@ -19,7 +19,7 @@ const EquipmentandTrapCalc = () => {
     if (initialUnit) setUnit(initialUnit);
 
     navigation.setOptions({
-      title: 'Equipment and Trap Result',
+      title: 'Result',
     });
   }, [navigation]);
 

@@ -13,7 +13,7 @@ const BatchCalc = () => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: 'Batch Calculation Result',
+      title: 'Result',
     });
   }, [navigation]);
 

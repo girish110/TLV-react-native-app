@@ -13,7 +13,7 @@ const CvKvsCalc = () => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: 'Cv Kvs Result',
+      title: 'Result',
     });
   }, [navigation]);
 

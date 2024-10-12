@@ -10,10 +10,9 @@ const DropBasedCalc = () => {
   const navigation = useNavigation();
   
 
-
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: 'Drop Based Result',
+      title: 'Result',
     });
   }, [navigation]);
 
